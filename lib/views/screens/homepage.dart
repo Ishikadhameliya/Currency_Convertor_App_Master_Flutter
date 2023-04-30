@@ -265,17 +265,19 @@ class _HomepageState extends State<Homepage> {
             home: CupertinoPageScaffold(
               backgroundColor: CupertinoColors.white,
               navigationBar: CupertinoNavigationBar(
-                backgroundColor: CupertinoColors.white,
+                backgroundColor: Colors.yellow.shade800,
                 middle: const Text(
                   "Currency Convertor",
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
-                    fontSize: 28,
+                    letterSpacing: 1,
+                    fontSize: 22,
                   ),
                 ),
                 trailing: CupertinoSwitch(
-                  activeColor: Colors.teal,
+                  activeColor: Colors.yellow.shade100,
+                  thumbColor: Colors.yellow,
                   onChanged: (val) {
                     setState(() {
                       isIOS = val;
@@ -287,9 +289,9 @@ class _HomepageState extends State<Homepage> {
               child: Center(
                 child: Column(
                   children: [
-                    const SizedBox(height: 100),
+                    const SizedBox(height: 80),
                     Padding(
-                      padding: const EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(10),
                       child: Form(
                         key: formKey,
                         child: CupertinoTextFormFieldRow(
@@ -309,7 +311,7 @@ class _HomepageState extends State<Homepage> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
-                              color: Colors.teal,
+                              color: Colors.yellow.shade800,
                               width: 1.5,
                             ),
                           ),
@@ -318,141 +320,173 @@ class _HomepageState extends State<Homepage> {
                     ),
                     const SizedBox(height: 20),
                     Container(
-                      height: 150,
+                      height: 60,
                       width: 300,
-                      padding: const EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(6),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.teal, width: 3),
+                        border: Border.all(color: Colors.yellow.shade800, width: 3),
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.teal.shade100,
+                        color: Colors.yellow.shade100,
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            height: 40,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                color: Colors.black,
-                              ),
-                            ),
-                            child: CupertinoButton(
-                              padding: const EdgeInsets.all(0),
-                              child: from == null
-                                  ? const Text(
-                                      'Dropdown',
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 15),
-                                    )
-                                  : Text(
-                                      "$from",
-                                      style: const TextStyle(
-                                          color: Colors.black, fontSize: 15),
-                                    ),
-                              onPressed: () {
-                                showCupertinoModalPopup(
-                                    context: context,
-                                    barrierDismissible: true,
-                                    builder: (context) {
-                                      return Container(
-                                        height: 500,
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        child: CupertinoPicker(
-                                          backgroundColor: Colors.black87,
-                                          scrollController:
-                                              FixedExtentScrollController(
-                                            initialItem: iosConvertFromVal,
-                                          ),
-                                          itemExtent: 35,
-                                          children: currencyList.map((val) {
-                                            return DropdownMenuItem<String>(
-                                              value: val,
-                                              alignment: Alignment.center,
-                                              child: Text(val),
-                                            );
-                                          }).toList(),
-                                          onSelectedItemChanged: (val) {
-                                            List data = currencyList;
-                                            setState(() {
-                                              iosConvertFromVal =
-                                                  data.indexOf(data[val]);
-                                              from = data[val];
-                                            });
-                                          },
-                                        ),
-                                      );
-                                    });
-                              },
-                            ),
+                      child: Container(
+                        height: 20,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                            color: Colors.black,
                           ),
-                          Container(
-                            height: 40,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                color: Colors.black,
-                              ),
-                            ),
-                            child: CupertinoButton(
-                              padding: const EdgeInsets.all(0),
-                              child: from == null
-                                  ? const Text(
-                                      'Dropdown',
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 15),
-                                    )
-                                  : Text(
-                                      "$To",
-                                      style: const TextStyle(
-                                          color: Colors.black, fontSize: 15),
-                                    ),
-                              onPressed: () {
-                                showCupertinoModalPopup(
-                                    context: context,
-                                    builder: (context) {
-                                      return Container(
-                                        height: 500,
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        child: CupertinoPicker(
-                                          scrollController:
-                                              FixedExtentScrollController(
-                                            initialItem: iosConvertToVal,
-                                          ),
-                                          itemExtent: 35,
-                                          children: currencyList.map((val) {
-                                            return DropdownMenuItem<String>(
-                                              value: val,
-                                              alignment: Alignment.center,
-                                              child: Text(val),
-                                            );
-                                          }).toList(),
-                                          onSelectedItemChanged: (val) {
-                                            setState(() {
-                                              iosConvertToVal = currencyList
-                                                  .indexOf(currencyList[val]);
-                                              from = currencyList[val];
-                                            });
-                                          },
-                                        ),
-                                      );
-                                    });
-                              },
-                            ),
+                        ),
+                        child: CupertinoButton(
+                          padding: const EdgeInsets.all(0),
+                          child: from == null
+                              ? const Text(
+                            'Currency',
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          )
+                              : Text(
+                            "$from",
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 15),
                           ),
-                        ],
+                          onPressed: () {
+                            showCupertinoModalPopup(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (context) {
+                                  return Container(
+                                    height: 250,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: Colors.yellow.shade100,
+                                      border: Border.all(
+                                        color: Colors.yellow.shade800,
+                                      ),
+                                    ),
+                                    child: CupertinoPicker(
+                                      backgroundColor: Colors.yellow.shade100,
+                                      scrollController:
+                                      FixedExtentScrollController(
+                                        initialItem: iosConvertFromVal,
+                                      ),
+                                      itemExtent: 40,
+                                      children: currencyList.map((val) {
+                                        return DropdownMenuItem<String>(
+                                          value: val,
+                                          alignment: Alignment.center,
+                                          child: Text(val),
+                                        );
+                                      }).toList(),
+                                      onSelectedItemChanged: (val) {
+                                        List data = currencyList;
+                                        setState(() {
+                                          iosConvertFromVal =
+                                              data.indexOf(data[val]);
+                                          from = data[val];
+                                        });
+                                      },
+                                    ),
+                                  );
+                                });
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      height: 60,
+                      width: 300,
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.yellow.shade800, width: 3),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.yellow.shade100,
+                      ),
+                      child: Container(
+                        height: 20,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                            color: Colors.black,
+                          ),
+                        ),
+                        child: CupertinoButton(
+                          padding: const EdgeInsets.all(0),
+                          child: from == null
+                              ? const Text(
+                            'Currency',
+                            style: TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          )
+                              : Text(
+                            "$To",
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 15),
+                          ),
+                          onPressed: () {
+                            showCupertinoModalPopup(
+                                context: context,
+                                builder: (context) {
+                                  return Container(
+                                    height: 250,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: Colors.yellow.shade100,
+                                      border: Border.all(
+                                        color: Colors.yellow.shade800,
+                                      ),
+                                    ),
+                                    child: CupertinoPicker(
+                                      scrollController:
+                                      FixedExtentScrollController(
+                                        initialItem: iosConvertToVal,
+                                      ),
+                                      itemExtent: 40,
+                                      children: currencyList.map((val) {
+                                        return DropdownMenuItem<String>(
+                                          value: val,
+                                          alignment: Alignment.center,
+                                          child: Text(val),
+                                        );
+                                      }).toList(),
+                                      onSelectedItemChanged: (val) {
+                                        setState(() {
+                                          iosConvertToVal = currencyList
+                                              .indexOf(currencyList[val]);
+                                          from = currencyList[val];
+                                        });
+                                      },
+                                    ),
+                                  );
+                                });
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 50),
+                    Container(
+                      height: 50,
+                      width: 220,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.yellow.shade800, width: 1.5)),
+                      child: FutureBuilder(
+                        future: CurrencyApiHelper.currencyApiHelper
+                            .fetchCurrencyData(API: API),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Text("Error: ${snapshot.error}");
+                          } else if (snapshot.hasData) {
+                            Currency? res = snapshot.data as Currency?;
+
+                            return Text("${res!.convertAmount}",style: TextStyle(color: Colors.yellow.shade800),);
+                          }
+
+                          return const CircularProgressIndicator();
+                        },
                       ),
                     ),
                     const SizedBox(height: 50),
@@ -471,38 +505,14 @@ class _HomepageState extends State<Homepage> {
                       },
                       child: Container(
                         height: 50,
-                        width: 250,
+                        width: 150,
                         decoration: BoxDecoration(
-                            color: Colors.teal.shade100,
+                            color: Colors.yellow.shade800,
                             borderRadius: BorderRadius.circular(10)),
                         alignment: Alignment.center,
-                        child: const Text("Convert Amount"),
+                        child: Text("Convert",style: TextStyle(color: Colors.yellow.shade100,fontSize: 20,fontWeight: FontWeight.bold),),
                       ),
                     ),
-                    const SizedBox(height: 50),
-                    Container(
-                      height: 50,
-                      width: 250,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.teal, width: 1.5)),
-                      child: FutureBuilder(
-                        future: CurrencyApiHelper.currencyApiHelper
-                            .fetchCurrencyData(API: API),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasError) {
-                            return Text("Error: ${snapshot.error}");
-                          } else if (snapshot.hasData) {
-                            Currency? res = snapshot.data as Currency?;
-
-                            return Text("${res!.convertAmount}");
-                          }
-
-                          return const CircularProgressIndicator();
-                        },
-                      ),
-                    )
                   ],
                 ),
               ),
